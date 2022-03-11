@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QuarkLauncher</class>
+ <widget class="QDialog" name="QuarkLauncher">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>557</width>
+    <height>540</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QuarkLauncher</string>
+  </property>
+  <layout class="QVBoxLayout" name="layout">
+   <item>
+    <widget class="QuarkGroup" name="Proton">
+     <property name="title">
+      <string>Proton</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="0">
+         <widget class="QuarkCheckBox" name="PROTON_DUMB_DEBUG_COMMANDS">
+          <property name="text">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QuarkCheckBox" name="PROTON_WAIT_ATTACH">
+          <property name="text">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QuarkCheckBox" name="PROTON_LOG">
+          <property name="text">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QuarkCheckBox" name="PROTON_USE_WINED3D">
+          <property name="text">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>PROTON_DEBUG_DIR</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>PROTON_LOG_DIR</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QuarkPathEdit" name="PROTON_LOG_DIR" native="true"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QuarkPathEdit" name="PROTON_DEBUG_DIR" native="true"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item alignment="Qt::AlignTop">
+    <widget class="QuarkGroup" name="Dxvk">
+     <property name="title">
+      <string>Dxvk</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QuarkCheckBox" name="DXVK_STATE_CACHE">
+        <property name="text">
+         <string>CheckBox</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QuarkCheckBox" name="DXVK_PERF_EVENTS">
+        <property name="text">
+         <string>CheckBox</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QuarkCheckBox" name="DXVK_HUD">
+        <property name="text">
+         <string>CheckBox</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QuarkCheckBox" name="DXVK_ASYNC">
+        <property name="text">
+         <string>CheckBox</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item alignment="Qt::AlignTop">
+    <widget class="QuarkGroup" name="Vkd3d">
+     <property name="title">
+      <string>Vkd3d</string>
+     </property>
+    </widget>
+   </item>
+   <item alignment="Qt::AlignTop">
+    <widget class="QuarkGroup" name="App">
+     <property name="title">
+      <string>Application</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="argsEdit"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="argsLabel">
+        <property name="text">
+         <string>Arguments</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="replLayout">
+        <item>
+         <widget class="QLineEdit" name="replExeEdit"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="arrowLabel">
+          <property name="text">
+           <string>-&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="origExeEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="replLabel">
+        <property name="text">
+         <string>Replace exe</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="buttonLayout">
+     <item>
+      <spacer name="buttonSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="killButton">
+       <property name="text">
+        <string>Kill process</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="envButton">
+       <property name="text">
+        <string>Environment Variables</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="conButton">
+       <property name="text">
+        <string>Show Console</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QuarkCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>widgets/quarkcheckbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QuarkPathEdit</class>
+   <extends>QWidget</extends>
+   <header>widgets/quarkpathedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QuarkGroup</class>
+   <extends>QGroupBox</extends>
+   <header>widgets/quarkgroup.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
