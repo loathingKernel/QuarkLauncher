@@ -4,7 +4,7 @@
 <context>
     <name>Console</name>
     <message>
-        <location filename="console.ui" line="14"/>
+        <location filename="console.ui" line="20"/>
         <source>QuarkLauncher - Console</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12,17 +12,17 @@
 <context>
     <name>EnvVariables</name>
     <message>
-        <location filename="envvariables.ui" line="14"/>
+        <location filename="envvariables.ui" line="20"/>
         <source>QuarkLauncher - Environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="envvariables.ui" line="53"/>
+        <location filename="envvariables.ui" line="59"/>
         <source>Variable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="envvariables.ui" line="58"/>
+        <location filename="envvariables.ui" line="64"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -36,69 +36,101 @@
     </message>
     <message>
         <location filename="quarklauncher.ui" line="20"/>
-        <source>Proton</source>
+        <source>PROTON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="60"/>
-        <source>PROTON_DEBUG_DIR</source>
+        <location filename="quarklauncher.ui" line="71"/>
+        <source>WINE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="67"/>
-        <source>PROTON_LOG_DIR</source>
+        <location filename="quarklauncher.ui" line="77"/>
+        <source>WINE_DISABLE_FULLSCREEN_HACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="85"/>
-        <source>Dxvk</source>
+        <location filename="quarklauncher.ui" line="84"/>
+        <source>WINE_FULLSCREEN_FSR_MODE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="quarklauncher.ui" line="91"/>
+        <source>WINE_FULLSCREEN_FSR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="quarklauncher.ui" line="98"/>
-        <location filename="quarklauncher.ui" line="105"/>
-        <location filename="quarklauncher.ui" line="112"/>
-        <source>CheckBox</source>
+        <source>WINE_FULLSCREEN_FSR_CUSTOM_MODE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="122"/>
-        <source>Vkd3d</source>
+        <location filename="quarklauncher.ui" line="108"/>
+        <source>DXVK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="129"/>
+        <location filename="quarklauncher.ui" line="114"/>
+        <source>DXVK_ASYNC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="quarklauncher.ui" line="121"/>
+        <source>DXVK_HUD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="quarklauncher.ui" line="128"/>
+        <source>DXVK_STATE_CACHE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="quarklauncher.ui" line="135"/>
+        <source>DXVK_PERF_EVENTS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="quarklauncher.ui" line="145"/>
+        <source>VKD3D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="quarklauncher.ui" line="151"/>
+        <source>VKD3D_DEBUG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="quarklauncher.ui" line="161"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="138"/>
+        <location filename="quarklauncher.ui" line="170"/>
         <source>Arguments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="150"/>
+        <location filename="quarklauncher.ui" line="182"/>
         <source>-&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="162"/>
-        <source>Replace exe</source>
+        <location filename="quarklauncher.ui" line="194"/>
+        <source>Override exe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="187"/>
+        <location filename="quarklauncher.ui" line="219"/>
         <source>Kill process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="194"/>
+        <location filename="quarklauncher.ui" line="226"/>
         <source>Environment Variables</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quarklauncher.ui" line="201"/>
+        <location filename="quarklauncher.ui" line="233"/>
         <source>Show Console</source>
         <translation type="unfinished"></translation>
     </message>

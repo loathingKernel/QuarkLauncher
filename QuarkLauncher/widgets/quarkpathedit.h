@@ -4,10 +4,8 @@
 #include <QWidget>
 #include <QFileDialog>
 #include <QStandardPaths>
-#include <QProcessEnvironment>
 
 #include "quarklineedit.h"
-#include "quarkenv.h"
 
 namespace Ui {
 class QuarkPathEdit;
@@ -27,7 +25,7 @@ private:
     Ui::QuarkPathEdit *ui;
 
 private slots:
-    void browseReleased(void);
+    void browseReleased();
 };
 
 #endif // QUARKPATHEDIT_H

@@ -18,15 +18,37 @@ set(TS_FILES QuarkLauncher_el_GR.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        quarklauncher.h quarklauncher.cpp quarklauncher.ui
-        envvariables.h envvariables.cpp envvariables.ui
-        console.h console.cpp console.ui
-        widgets/quarkenv.h widgets/quarkenv.cpp
-        widgets/quarkgroup.h widgets/quarkgroup.cpp
-        widgets/quarkoption.h widgets/quarkoption.cpp
-        widgets/quarkcheckbox.h widgets/quarkcheckbox.cpp
-        widgets/quarklineedit.h widgets/quarklineedit.cpp
-        widgets/quarkpathedit.h widgets/quarkpathedit.cpp widgets/quarkpathedit.ui
+        quarklauncher.h
+        quarklauncher.cpp
+        quarklauncher.ui
+        envvariables.h
+        envvariables.cpp
+        envvariables.ui
+        utils/ansiescapecodehandler.cpp
+        utils/ansiescapecodehandler.h
+        console.h
+        console.cpp
+        console.ui
+        widgets/quarkenv.h
+        widgets/quarkenv.cpp
+        widgets/quarkgroup.h
+        widgets/quarkgroup.cpp
+        widgets/quarkoption.h
+        widgets/quarkoption.cpp
+        widgets/quarkcontainer_widget.h
+        widgets/quarkcontainer_widget.cpp
+        widgets/quarkcontainer_groupbox.h
+        widgets/quarkcontainer_groupbox.cpp
+        widgets/quarkcheckbox.cpp
+        widgets/quarkgroupbox.h
+        widgets/quarkgroupbox.cpp
+        widgets/quarkcheckbox.h
+        widgets/quarkcheckbox.cpp
+        widgets/quarklineedit.h
+        widgets/quarklineedit.cpp
+        widgets/quarkpathedit.h
+        widgets/quarkpathedit.cpp
+        widgets/quarkpathedit.ui
         resources/resources.qrc
         ${TS_FILES}
 )
@@ -71,3 +93,7 @@ set_target_properties(QuarkLauncher PROPERTIES
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(QuarkLauncher)
 endif()
+
+set_target_properties(QuarkLauncher PROPERTIES OUTPUT_NAME "quarkle")
+
+install(TARGETS QuarkLauncher)

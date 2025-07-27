@@ -1,17 +1,19 @@
 #ifndef QUARKGROUP_H
 #define QUARKGROUP_H
 
-#include <QGroupBox>
+#include <QObject>
 
 #include "quarkenv.h"
 
-class QuarkGroup : public QGroupBox, public QuarkEnv
+class QuarkGroup : public QObject, public QuarkEnv
 {
+    Q_OBJECT
 public:
-    explicit QuarkGroup(QWidget *parent = nullptr);
+    explicit QuarkGroup(QObject *parent = nullptr);
     ~QuarkGroup();
 
     void setObjectName(const QString&);
+    QString objectName();
 
     void initGroup(const QString&);
 };

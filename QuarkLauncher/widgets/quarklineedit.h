@@ -19,7 +19,7 @@ public slots:
 
     // QuarkOption interface
 public:
-    void load();
+    void load(QProcessEnvironment*);
 };
 
 #endif // QUARKLINEEDIT_H

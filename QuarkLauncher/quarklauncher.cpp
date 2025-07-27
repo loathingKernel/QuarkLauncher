@@ -9,12 +9,12 @@ QuarkLauncher::QuarkLauncher(QWidget *parent)
 
     m_args = QStringList(qApp->instance()->arguments());
     m_args.removeFirst();
-    for (int idx = 0; idx < m_args.size(); idx++) {
-        if (m_args.at(idx).contains("AppId=")) {
-            m_appId = QString(m_args.at(idx).split("=")[1]);
+    for (const auto & m_arg : m_args) {
+        if (m_arg.contains("AppId=")) {
+            m_appId = QString(m_arg.split("=")[1]);
         }
-        if (m_args.at(idx).contains(".exe")) {
-            m_winCmd = QString(m_args.at(idx));
+        if (m_arg.contains(".exe")) {
+            m_winCmd = QString(m_arg);
         }
     }
     qDebug() << "Args: " << m_args.join(", ");
@@ -22,40 +22,61 @@ QuarkLauncher::QuarkLauncher(QWidget *parent)
     qDebug() << "WinCmd: " << m_winCmd;
 
     QList<QuarkGroup*> groups = this->findChildren<QuarkGroup*>();
-    qDebug() << groups;
+    qDebug() << "Groups:";
     QListIterator<QuarkGroup*> groups_iter(groups);
     while (groups_iter.hasNext()) {
         QuarkGroup* group = groups_iter.next();
-        if (dynamic_cast<QuarkGroup*>(group))
+        qDebug() << group;
+        if (group)
             group->initGroup(m_appId);
     }
 
+    m_env = QProcessEnvironment::systemEnvironment();
+
     QList<QuarkOption*> options = this->findChildren<QuarkOption*>();
-    qDebug() << options;
+    qDebug() << "Options:";
     QListIterator<QuarkOption*> options_iter(options);
     while (options_iter.hasNext()) {
         QuarkOption* option = options_iter.next();
-        if (dynamic_cast<QuarkOption*>(option))
-            option->load();
+        qDebug() << option;
+        if (option)
+            option->load(&m_env);
     }
 
-    m_env = QProcessEnvironment().systemEnvironment();
+    load();
+
     m_proc = new QProcess(this);
 
-    m_envDialog = new EnvVariables(this);
-    m_conDialog = new Console(m_proc, this);
+    m_envVariables = new EnvVariables(this);
+    m_console = new Console(m_proc, this);
 
     ui->killButton->setEnabled(false);
 
-    connect(ui->envButton, SIGNAL(released()), this, SLOT(envButtonReleased()));
-    connect(ui->conButton, SIGNAL(released()), this, SLOT(conButtonReleased()));
-    connect(ui->killButton, SIGNAL(released()), this, SLOT(killButtonReleased()));
-    connect(this->m_proc, SIGNAL(started()), this->m_conDialog, SLOT(started()));
-//    connect(this->proc, SIGNAL(finished()), this->conDlg, SLOT(finished()));
-    connect(this->m_proc, SIGNAL(readyReadStandardError()), this->m_conDialog, SLOT(readyReadStderr()));
-    connect(this->m_proc, SIGNAL(readyReadStandardOutput()), this->m_conDialog, SLOT(readyReadStdout()));
-    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(ui->environButton, &QPushButton::released,
+            this, &QuarkLauncher::environButtonReleased );
+    connect(ui->consoleButton, &QPushButton::released,
+            this, &QuarkLauncher::consoleButtonReleased );
+    connect(ui->killButton,    &QPushButton::released,
+            this, &QuarkLauncher::killButtonReleased    );
+
+    connect(this->m_proc, &QProcess::started,
+            this->m_console, &Console::started          );
+//    connect(this->m_proc,       &QProcess::finished,
+//            this->m_console,    &Console::finished);
+    connect(this->m_proc, &QProcess::readyReadStandardError,
+            this->m_console, &Console::readyReadStderr  );
+    connect(this->m_proc, &QProcess::readyReadStandardOutput,
+            this->m_console, &Console::readyReadStdout  );
+
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &QuarkLauncher::accept);
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &QuarkLauncher::reject);
+
+    connect(ui->arguments,      &QLineEdit::textChanged,
+            this, [=] (QString text) { save("arguments", text);        } );
+    connect(ui->originalExe,    &QLineEdit::textChanged,
+            this, [=] (QString text) { save("original_exe", text);     } );
+    connect(ui->replacementExe, &QLineEdit::textChanged,
+            this, [=] (QString text) { save("replacement_exe", text);  } );
 }
 
 QuarkLauncher::~QuarkLauncher()
@@ -63,9 +84,9 @@ QuarkLauncher::~QuarkLauncher()
     delete ui;
 }
 
-void QuarkLauncher::conButtonReleased()
+void QuarkLauncher::consoleButtonReleased()
 {
-    m_conDialog->show();
+    m_console->show();
 }
 
 void QuarkLauncher::killButtonReleased()
@@ -76,19 +97,72 @@ void QuarkLauncher::killButtonReleased()
     ui->killButton->setEnabled(false);
 }
 
-void QuarkLauncher::envButtonReleased()
+void QuarkLauncher::environButtonReleased()
 {
-    QProcessEnvironment env(m_env);
-    env.insert(*(ui->Proton->environment()));
-    m_envDialog->setTable(&env);
-    m_envDialog->show();
+    QProcessEnvironment env = getChildEnv(&m_env);
+    m_envVariables->setTable(&env);
+    m_envVariables->show();
 }
 
 void QuarkLauncher::accept()
 {
-    QString cmd = m_args.takeFirst();
-    m_proc->setProcessEnvironment(m_env);
-    m_proc->start(cmd, m_args);
+    QProcessEnvironment denv = getChildEnv(nullptr);
+    qDebug() << "Environ  : " << denv.toStringList().join(", ");
+
+    QProcessEnvironment env = getChildEnv(&m_env);
+
+    QStringList args(m_args);
+
+    QString cmd = args.takeFirst();
+    qDebug() << "Command  : " << cmd;
+
+    if (!args.isEmpty()) {
+        if (args.last().contains(ui->originalExe->text())) {
+            args.last().replace(ui->originalExe->text(), ui->replacementExe->text());
+        }
+    }
+    if (!ui->arguments->text().isEmpty()) {
+        args.append(ui->arguments->text());
+    }
+    qDebug() << "Arguments: " << args.join(", ");
+
+    m_proc->setProcessEnvironment(env);
+    m_proc->start(cmd, args);
     ui->killButton->setEnabled(true);
+}
+
+void QuarkLauncher::save(QString name, QString text)
+{
+    QSettings settings(this);
+    settings.beginGroup(m_appId);
+    settings.beginGroup("appl");
+    settings.setValue(name, text);
+    settings.endGroup();
+    settings.endGroup();
+}
+
+void QuarkLauncher::load()
+{
+    QSettings settings(this);
+    settings.beginGroup(m_appId);
+    settings.beginGroup("appl");
+    ui->arguments->setText(settings.value("arguments", "").toString());
+    ui->originalExe->setText(settings.value("original_exe", "").toString());
+    ui->replacementExe->setText(settings.value("replacement_exe", "").toString());
+    settings.endGroup();
+    settings.endGroup();
+}
+
+QProcessEnvironment QuarkLauncher::getChildEnv(const QProcessEnvironment* env) const {
+    QProcessEnvironment _env;
+    if (env != nullptr)
+        _env.insert(*env);
+
+    _env.insert(*(ui->proton->environment()));
+    _env.insert(*(ui->wine->environment()));
+    _env.insert(*(ui->dxvk->environment()));
+    _env.insert(*(ui->vkd3d->environment()));
+    _env.insert(*(ui->osd->environment()));
+    return _env;
 }
 

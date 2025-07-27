@@ -2,22 +2,20 @@
 
 QuarkEnv::QuarkEnv(QObject *parent)
 {
-    QuarkEnv* container = dynamic_cast<QuarkEnv*>(parent);
+    const auto* container = dynamic_cast<QuarkEnv*>(parent);
     if (container) {
         m_environment = container->environment();
         m_settings = container->settings();
     } else {
         if (parent)
-            qDebug() << objectName() << ": Couldn't get env from parent " << parent->objectName();
+            qDebug() << QuarkEnv::objectName() << ": Couldn't get env from parent " << parent->objectName();
         else
-            qDebug() << objectName() << ": Parent is null";
+            qDebug() << QuarkEnv::objectName() << ": Parent is null";
     }
 }
 
 QuarkEnv::~QuarkEnv()
-{
-
-}
+= default;
 
 QProcessEnvironment *QuarkEnv::environment() const
 {
@@ -41,7 +39,7 @@ void QuarkEnv::setSettings(QSettings *settings)
 
 QString QuarkEnv::objectName()
 {
-    return QString("QuarkEnv");
+    return {"QuarkEnv"};
 }
 
 const QString &QuarkEnv::appid() const

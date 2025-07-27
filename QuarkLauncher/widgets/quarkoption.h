@@ -2,7 +2,6 @@
 #define QUARKOPTION_H
 
 #include <QObject>
-#include <QtDebug>
 
 #include "quarkenv.h"
 
@@ -12,14 +11,16 @@ class QuarkOption : public QObject, public QuarkEnv
 public:
     explicit QuarkOption(QObject *parent = nullptr);
 
-    // Override setObject name to also set m_varName;
+    // Override object name
     void setObjectName(const QString&);
     QString objectName();
 
-    virtual void load() = 0;
+    virtual void load(QProcessEnvironment*) = 0;
+    QVariant loadOption(QProcessEnvironment*);
 
 public slots:
     virtual void setEnvVariable(int);
+    virtual void setEnvVariable(bool);
     virtual void setEnvVariable(const QString&);
 
 signals:

@@ -17,7 +17,7 @@ public:
     explicit EnvVariables(QWidget *parent = nullptr);
     ~EnvVariables();
 
-    void setTable(QProcessEnvironment*);
+    void setTable(const QProcessEnvironment*) const;
 
 private:
     Ui::EnvVariables *ui;

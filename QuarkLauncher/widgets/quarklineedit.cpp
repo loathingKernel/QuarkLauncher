@@ -27,8 +27,8 @@ void QuarkLineEdit::setEnvVariable(const QString &text)
     qDebug() << environment()->toStringList().join(" ");
 }
 
-void QuarkLineEdit::load()
+void QuarkLineEdit::load(QProcessEnvironment* env)
 {
-    setText(settings()->value(QuarkOption::objectName()).toString());
+    setText(loadOption(env).toString());
 }
 

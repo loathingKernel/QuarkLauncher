@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QProcess>
 
+#include <utils/ansiescapecodehandler.h>
+
 namespace Ui {
 class Console;
 }
@@ -24,6 +26,7 @@ public slots:
 
 private:
     QProcess* proc;
+    Utils::AnsiEscapeCodeHandler handler;
 
     Ui::Console *ui;
 };

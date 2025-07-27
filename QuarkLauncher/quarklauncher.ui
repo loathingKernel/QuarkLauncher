@@ -6,160 +6,424 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>557</width>
-    <height>540</height>
+    <width>545</width>
+    <height>617</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QuarkLauncher</string>
   </property>
   <layout class="QVBoxLayout" name="layout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetFixedSize</enum>
+   </property>
    <item>
-    <widget class="QuarkGroup" name="Proton">
-     <property name="title">
-      <string>Proton</string>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>4</number>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="0">
-         <widget class="QuarkCheckBox" name="PROTON_DUMB_DEBUG_COMMANDS">
-          <property name="text">
-           <string notr="true"/>
+     <widget class="QWidget" name="protonTab">
+      <attribute name="title">
+       <string>Proton</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QuarkContainerWidget" name="proton" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QGridLayout" name="gridLayout">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
+            </property>
+            <item row="1" column="1">
+             <widget class="QuarkCheckBox" name="PROTON_WAIT_ATTACH">
+              <property name="text">
+               <string notr="true">PROTON_WAIT_ATTACH</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QuarkCheckBox" name="PROTON_USE_WINED3D">
+              <property name="text">
+               <string notr="true">PROTON_USE_WINED3D</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QuarkGroupBox" name="PROTON_LOG">
+            <property name="title">
+             <string>PROTON_LOG</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QuarkPathEdit" name="PROTON_LOG_DIR" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QuarkGroupBox" name="PROTON_DUMP_DEBUG_COMMANDS">
+            <property name="title">
+             <string>PROTON_DUMP_DEBUG_COMMANDS</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QuarkPathEdit" name="PROTON_DEBUG_DIR" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="protonSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="wineTab">
+      <attribute name="title">
+       <string>Wine</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QuarkContainerWidget" name="wine" native="true">
+         <layout class="QGridLayout" name="gridLayout_5">
+          <property name="leftMargin">
+           <number>0</number>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QuarkCheckBox" name="PROTON_WAIT_ATTACH">
-          <property name="text">
-           <string notr="true"/>
+          <property name="topMargin">
+           <number>0</number>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QuarkCheckBox" name="PROTON_LOG">
-          <property name="text">
-           <string notr="true"/>
+          <property name="rightMargin">
+           <number>0</number>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QuarkCheckBox" name="PROTON_USE_WINED3D">
-          <property name="text">
-           <string notr="true"/>
+          <property name="bottomMargin">
+           <number>0</number>
           </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>PROTON_DEBUG_DIR</string>
+          <item row="0" column="0">
+           <widget class="QuarkCheckBox" name="WINE_FULLSCREEN_FSR">
+            <property name="text">
+             <string>WINE_FULLSCREEN_FSR</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QuarkCheckBox" name="WINE_DISABLE_FULLSCREEN_HACK">
+            <property name="text">
+             <string>WINE_DISABLE_FULLSCREEN_HACK</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="WINE_FULLSCREEN_FSR_MODE">
+            <property name="text">
+             <string>WINE_FULLSCREEN_FSR_MODE</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="WINE_FULLSCREEN_FSR_CUSTOM_MODE">
+            <property name="text">
+             <string>WINE_FULLSCREEN_FSR_CUSTOM_MODE</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="wineSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="dxvkTab">
+      <attribute name="title">
+       <string>DXVK</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QuarkContainerWidget" name="dxvk" native="true">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <property name="leftMargin">
+           <number>0</number>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>PROTON_LOG_DIR</string>
+          <property name="topMargin">
+           <number>0</number>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QuarkPathEdit" name="PROTON_LOG_DIR" native="true"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QuarkPathEdit" name="PROTON_DEBUG_DIR" native="true"/>
-        </item>
-       </layout>
-      </item>
-     </layout>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QuarkCheckBox" name="DXVK_HUD">
+            <property name="text">
+             <string>DXVK_HUD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QuarkCheckBox" name="DXVK_ASYNC">
+            <property name="text">
+             <string>DXVK_ASYNC</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QuarkCheckBox" name="DXVK_STATE_CACHE">
+            <property name="text">
+             <string>DXVK_STATE_CACHE</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QuarkCheckBox" name="DXVK_PERF_EVENTS">
+            <property name="text">
+             <string>DXVK_PERF_EVENTS</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="dxvkSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="vkd3dTab">
+      <attribute name="title">
+       <string>VKD3D-Proton</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QuarkContainerWidget" name="vkd3d" native="true">
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QuarkCheckBox" name="VKD3D_DEBUG">
+            <property name="text">
+             <string>VKD3D_DEBUG</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="vkd3dSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="osdTab">
+      <attribute name="title">
+       <string>Display</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QuarkContainerWidget" name="osd" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QuarkGroupBox" name="MANGOHUD">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>MANGOHUD</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_6"/>
+           </widget>
+          </item>
+          <item>
+           <widget class="QuarkContainerGroupBox" name="nvidia">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>NVIDIA</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="0" column="0">
+              <widget class="QuarkCheckBox" name="__GL_SHOW_GRAPHICS_OSD">
+               <property name="text">
+                <string>__GL_SHOW_GRAPHICS_OSD</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="osdSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
-   <item alignment="Qt::AlignTop">
-    <widget class="QuarkGroup" name="Dxvk">
-     <property name="title">
-      <string>Dxvk</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <widget class="QuarkCheckBox" name="DXVK_STATE_CACHE">
-        <property name="text">
-         <string>CheckBox</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QuarkCheckBox" name="DXVK_PERF_EVENTS">
-        <property name="text">
-         <string>CheckBox</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QuarkCheckBox" name="DXVK_HUD">
-        <property name="text">
-         <string>CheckBox</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QuarkCheckBox" name="DXVK_ASYNC">
-        <property name="text">
-         <string>CheckBox</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item alignment="Qt::AlignTop">
-    <widget class="QuarkGroup" name="Vkd3d">
-     <property name="title">
-      <string>Vkd3d</string>
-     </property>
-    </widget>
-   </item>
-   <item alignment="Qt::AlignTop">
-    <widget class="QuarkGroup" name="App">
+   <item>
+    <widget class="QuarkContainerGroupBox" name="app">
      <property name="title">
       <string>Application</string>
      </property>
      <layout class="QFormLayout" name="formLayout">
+      <property name="labelAlignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="argsEdit"/>
+       <widget class="QLineEdit" name="arguments">
+        <property name="placeholderText">
+         <string>-something -that_other_thing</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="argsLabel">
+       <widget class="QLabel" name="argumentsLabel">
         <property name="text">
          <string>Arguments</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <layout class="QHBoxLayout" name="replLayout">
+       <layout class="QVBoxLayout" name="exeLayout">
         <item>
-         <widget class="QLineEdit" name="replExeEdit"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="arrowLabel">
-          <property name="text">
-           <string>-&gt;</string>
+         <widget class="QLineEdit" name="originalExe">
+          <property name="placeholderText">
+           <string>Default executable</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="origExeEdit"/>
+         <widget class="QLineEdit" name="replacementExe">
+          <property name="placeholderText">
+           <string>Replament executable</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="replLabel">
+       <widget class="QLabel" name="overrideLabel">
         <property name="text">
-         <string>Replace exe</string>
+         <string>Override</string>
         </property>
        </widget>
       </item>
@@ -175,8 +439,8 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>0</width>
+         <height>0</height>
         </size>
        </property>
       </spacer>
@@ -189,14 +453,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="envButton">
+      <widget class="QPushButton" name="environButton">
        <property name="text">
         <string>Environment Variables</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="conButton">
+      <widget class="QPushButton" name="consoleButton">
        <property name="text">
         <string>Show Console</string>
        </property>
@@ -207,7 +471,7 @@
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Abort|QDialogButtonBox::Ok</set>
      </property>
      <property name="centerButtons">
       <bool>false</bool>
@@ -229,9 +493,21 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>QuarkGroup</class>
+   <class>QuarkGroupBox</class>
    <extends>QGroupBox</extends>
-   <header>widgets/quarkgroup.h</header>
+   <header>widgets/quarkgroupbox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QuarkContainerWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/quarkcontainer_widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QuarkContainerGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>widgets/quarkcontainer_groupbox.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

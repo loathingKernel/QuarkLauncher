@@ -5,8 +5,8 @@ QuarkCheckBox::QuarkCheckBox(QWidget *parent) :
     QuarkOption(parent)
 {
     QObject::connect(
-                dynamic_cast<QCheckBox*>(this), SIGNAL(stateChanged(int)),
-                dynamic_cast<QuarkOption*>(this), SLOT(setEnvVariable(int)));
+        dynamic_cast<QCheckBox *>(this), SIGNAL(stateChanged(int)),
+        dynamic_cast<QuarkOption *>(this), SLOT(setEnvVariable(int)));
 }
 
 void QuarkCheckBox::setObjectName(const QString &name)
@@ -29,11 +29,11 @@ void QuarkCheckBox::setEnvVariable(int state)
         environment()->insert(QuarkOption::objectName(), "1");
         settings()->setValue(QuarkOption::objectName(), "1");
     }
-    qDebug() << environment()->toStringList().join(" ");
+    QuarkOption::setEnvVariable(state);
 }
 
-void QuarkCheckBox::load()
+void QuarkCheckBox::load(QProcessEnvironment* env)
 {
-    this->setChecked(settings()->value(QuarkOption::objectName()).toBool());
+    this->setChecked(loadOption(env).toBool());
 }
 

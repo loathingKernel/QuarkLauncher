@@ -1,14 +1,14 @@
-#ifndef QUARKCHECKBOX_H
-#define QUARKCHECKBOX_H
+#ifndef QUARKGROUPBOX_H
+#define QUARKGROUPBOX_H
 
-#include <QCheckBox>
+#include <QGroupBox>
 
 #include "quarkoption.h"
 
-class QuarkCheckBox : public QCheckBox, public QuarkOption
+class QuarkGroupBox : public QGroupBox, public QuarkOption
 {
 public:
-    explicit QuarkCheckBox(QWidget *parent = nullptr);
+    explicit QuarkGroupBox(QWidget *parent = nullptr);
 
     // Override setObjectName to handle both parent classes
     void setObjectName(const QString&);
@@ -17,11 +17,11 @@ public:
 
     // QuarkOption interface
 public slots:
-    void setEnvVariable(int) override;
+    void setEnvVariable(bool) override;
 
     // QuarkOption interface
 public:
     void load(QProcessEnvironment*) override;
 };
 
-#endif // QUARKCHECKBOX_H
+#endif // QUARKGROUPBOX_H

@@ -7,7 +7,7 @@ QuarkPathEdit::QuarkPathEdit(QWidget *parent) :
     QuarkEnv(parent)
 {
     ui->setupUi(this);
-    connect(ui->browse, SIGNAL(released()), this, SLOT(browseReleased()));
+    connect(ui->browse, &QPushButton::released, this, &QuarkPathEdit::browseReleased);
 }
 
 QuarkPathEdit::~QuarkPathEdit()

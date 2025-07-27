@@ -13,16 +13,13 @@ EnvVariables::~EnvVariables()
     delete ui;
 }
 
-void EnvVariables::setTable(QProcessEnvironment* env)
-{
+void EnvVariables::setTable(const QProcessEnvironment* env) const {
     ui->table->clearContents();
     ui->table->setRowCount(env->keys().size());
 
     for (int idx = 0; idx < env->keys().size(); idx++) {
-        QTableWidgetItem *name = new QTableWidgetItem(env->keys().at(idx));
-        ui->table->setItem(idx, 0, name);
-        QTableWidgetItem *value = new QTableWidgetItem(env->value(env->keys().at(idx)));
-        ui->table->setItem(idx, 1, value);
+        ui->table->setItem(idx, 0, new QTableWidgetItem(env->keys().at(idx)));
+        ui->table->setItem(idx, 1, new QTableWidgetItem(env->value(env->keys().at(idx))));
     }
 
     ui->table->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
